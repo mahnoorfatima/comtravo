@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "lint": "eslint .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "cluster": "^0.7.7",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "jest": "^27.3.1",
     "lodash": "^4.17.21",
     "log-winston-aws-level": "^1.11.0",
     "request": "^2.88.2",
