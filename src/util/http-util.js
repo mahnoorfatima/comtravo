@@ -1,6 +1,6 @@
-const 
-    Logger = require('log-winston-aws-level');
-    Request = require('request');
+/* eslint-disable no-async-promise-executor */
+const Logger = require('log-winston-aws-level');
+const Request = require('request');
 
 async function sendHttpRequest(url, method, headers, body) {
   return new Promise(async (resolve, reject) => {
@@ -28,7 +28,7 @@ async function sendHttpRequest(url, method, headers, body) {
     const options = {
       url,
       method,
-      headers
+      headers,
     };
     if (Logger.currentLevel() === 'debug') {
       Logger.debug(`HTTP Request: ${JSON.stringify(options)}`);
@@ -46,9 +46,9 @@ async function sendHttpRequest(url, method, headers, body) {
         }
         resolve(responseBody);
       } else {
-        Logger.info(`Other Response: `, JSON.stringify(response));
-        Logger.info(`Other Response Body: `, JSON.stringify(responseBody));
-        Logger.info(`Other Response Error: `, JSON.stringify(error));
+        Logger.info('Other Response: ', JSON.stringify(response));
+        Logger.info('Other Response Body: ', JSON.stringify(responseBody));
+        Logger.info('Other Response Error: ', JSON.stringify(error));
         reject(response);
       }
     });
@@ -56,5 +56,5 @@ async function sendHttpRequest(url, method, headers, body) {
 }
 
 module.exports = {
-  sendHttpRequest
+  sendHttpRequest,
 };

@@ -9,14 +9,14 @@ const consoleLogger = () => new winston.transports.Console({
   format: winston.format.combine(
     winston.format.timestamp(),
     winston.format.colorize(),
-    winston.format.printf(info => `[${info.timestamp}] ${info.level} ${info.message}`),
+    winston.format.printf((info) => `[${info.timestamp}] ${info.level} ${info.message}`),
   ),
   handleExceptions: true,
 });
 
-const addCloudWatchLogger = (service) => {
+const addCloudWatchLogger = () => {
   winston.loggers.add(service, {
-    level:  process.env.LOG_LEVEL || LOGGER_CONSTANTS.LOG_LEVEL,
+    level: process.env.LOG_LEVEL || LOGGER_CONSTANTS.LOG_LEVEL,
     format: winston.format.combine(
       winston.format.timestamp(),
     ),
@@ -25,7 +25,7 @@ const addCloudWatchLogger = (service) => {
       new WinstonCloudWatch({
         name: 'cloud',
         level: process.env.LOG_LEVEL || LOGGER_CONSTANTS.LOG_LEVEL,
-        messageFormatter: info => `[${info.timestamp}] ${info.level.toUpperCase()} ${info.message}`,
+        messageFormatter: (info) => `[${info.timestamp}] ${info.level.toUpperCase()} ${info.message}`,
         logGroupName: LOGGER_CONSTANTS.LOG_GROUP_NAME,
         logStreamName: `${LOGGER_CONSTANTS.LOG_STREAM_NAME}-${new Date().getTime()}`,
         awsRegion: LOGGER_CONSTANTS.AWS_REGION,
@@ -35,7 +35,7 @@ const addCloudWatchLogger = (service) => {
   });
 };
 
-const addFailureCloudWatchLogger = (service) => {
+const addFailureCloudWatchLogger = () => {
   winston.loggers.add(`${service}-fail`, {
     level: process.env.LOG_LEVEL || LOGGER_CONSTANTS.LOG_LEVEL,
     format: winston.format.combine(
@@ -46,7 +46,7 @@ const addFailureCloudWatchLogger = (service) => {
       new WinstonCloudWatch({
         name: 'cloud',
         level: process.env.LOG_LEVEL || LOGGER_CONSTANTS.LOG_LEVEL,
-        messageFormatter: info => `[${info.timestamp}] ${info.level.toUpperCase()} ${info.message}`,
+        messageFormatter: (info) => `[${info.timestamp}] ${info.level.toUpperCase()} ${info.message}`,
         logGroupName: LOGGER_CONSTANTS.LOG_GROUP_NAME,
         logStreamName: `${LOGGER_CONSTANTS.LOG_STREAM_NAME}-${new Date().getTime()}`,
         awsRegion: LOGGER_CONSTANTS.AWS_REGION,
@@ -69,7 +69,7 @@ const init = () => {
       consoleLogger(),
     ],
   });
-  
+
   addCloudWatchLogger(service);
   addFailureCloudWatchLogger(service);
 };
@@ -83,7 +83,7 @@ class Logger {
   static flush() {
     winston.loggers.loggers.forEach((logVal) => {
       const log = logVal;
-      const transport = log.transports.find(t => t.name === 'cloud');
+      const transport = log.transports.find((t) => t.name === 'cloud');
       if (transport) {
         transport.kthxbye(() => { });
       }

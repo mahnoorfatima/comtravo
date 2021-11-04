@@ -1,8 +1,7 @@
-const
-    express = require("express"),
-    flightController = require('../controller/flightController'),
-    router = express.Router();
+const express = require('express');
+const flightController = require('../controller/flightController');
 
+const router = express.Router();
 
 router.get('/check', (req, res) => res.json({ status: 'Ok' }));
 

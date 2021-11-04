@@ -1,5 +1,3 @@
-const { level } = require('log-winston-aws-level');
-
 const   
     express = require('express'),
     bodyParser = require('body-parser'),
