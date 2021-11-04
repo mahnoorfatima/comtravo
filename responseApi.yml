@@ -1,0 +1,27 @@
+openapi: 3.0.0
+info:
+  title: Flights Response API
+  description: Return Flight details in less than 1 seconds
+  version: 1.0.0
+servers:
+  - url: 'localhost:3000/api'
+paths:
+  /flights:
+    get:
+      summary: Get response for Unique Flights Scheduale
+      requestBody:
+        required: true
+        content:
+          application/json:
+      responses:
+        '200': # status code
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '400': # status code
+          description: Bad Request
+        '500': # status code
+          description: Internal Server Error
+
