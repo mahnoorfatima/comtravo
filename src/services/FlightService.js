@@ -21,7 +21,6 @@ const mergeAndRemoveDuplicateFlights = (flightResults) => {
       /* eslint-disable max-len */
       filteredFlights = flights.filter((v, i, a) => a.findIndex((t) => (t.flight_number === v.flight_number && t.arrival_date_time_utc === v.arrival_date_time_utc)) === i);
     }
-    console.log('----------flights---------------', filteredFlights);
     return filteredFlights;
   } catch (err) {
     Logger.error(`Failed to process:  ${err}`);
