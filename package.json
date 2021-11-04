@@ -1,0 +1,32 @@
+{
+  "name": "comtravo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mahnoorfatima/comtravo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mahnoorfatima/comtravo/issues"
+  },
+  "homepage": "https://github.com/mahnoorfatima/comtravo#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1021.0",
+    "body-parser": "^1.19.0",
+    "cluster": "^0.7.7",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.21",
+    "log-winston-aws-level": "^1.11.0",
+    "request": "^2.88.2",
+    "winston": "^3.3.3",
+    "winston-cloudwatch": "^3.1.1"
+  }
+}
