@@ -28,6 +28,7 @@
     "lodash": "^4.17.21",
     "log-winston-aws-level": "^1.11.0",
     "request": "^2.88.2",
+    "superagent": "^6.1.0",
     "winston": "^3.3.3",
     "winston-cloudwatch": "^3.1.1"
   },

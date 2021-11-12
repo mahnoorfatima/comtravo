@@ -19,6 +19,8 @@ const mergeAndRemoveDuplicateFlights = (flightResults) => {
         });
       }
       /* eslint-disable max-len */
+      // removed duplicates for same flight number and arrival_date_time_utc
+      // ignoresd price as i am not clear about it
       filteredFlights = flights.filter((v, i, a) => a.findIndex((t) => (t.flight_number === v.flight_number && t.arrival_date_time_utc === v.arrival_date_time_utc)) === i);
     }
     return filteredFlights;
