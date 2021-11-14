@@ -1,22 +1,21 @@
 const retryUtil = require('../util/retry-handling');
 const Logger = require('../util/logger');
-
+const httpUtil = require('../util/http-util');
+const API_CONSTANTS = require('../constants/api');
+const config = require('../config/index');
 // eslint-disable-next-line consistent-return
-const processResponse = async (params, retry = false) => {
-  console.log('-----------params------------', params);
+const processResponse = async (api, retry = false) => {
   let result = [];
   try {
-    Logger.info(`processResponse: ${params} - retry: ${retry}`);
+    Logger.info(`processResponse: ${api} - retry: ${retry}`);
     if (retry) {
-      Logger.info(`Retrying with params ${params}`);
-      result = await retryUtil.retryOperation(params);
+      result = await retryUtil.retryOperation(paraapims);
     }
     // eslint-disable-next-line max-len
-    const promise = [params.operation, new Promise((resolve) => setTimeout(() => resolve([]), params.timeout))];
+    const promise = [ httpUtil.sendHttpRequest(api, API_CONSTANTS.METHODS.GET, config.headers), new Promise((resolve) => setTimeout(() => resolve([]), config.timeout))];
     result = await Promise.race(promise);
-    console.log('-----------result------------', result);
-
     const { flights } = JSON.parse(result);
+    if (!flights) return result;
     Logger.info(`processResponse: flights ${flights}`);
     return flights;
   } catch (error) {

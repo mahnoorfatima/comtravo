@@ -46,9 +46,9 @@ async function sendHttpRequest(url, method, headers, body) {
         }
         resolve(responseBody);
       } else {
-        Logger.info('Other Response: ', JSON.stringify(response));
-        Logger.info('Other Response Body: ', JSON.stringify(responseBody));
-        Logger.info('Other Response Error: ', JSON.stringify(error));
+        Logger.debug('Other Response: ', JSON.stringify(response));
+        Logger.debug('Other Response Body: ', JSON.stringify(responseBody));
+        Logger.debug('Other Response Error: ', JSON.stringify(error));
         reject(response);
       }
     });

@@ -33,20 +33,7 @@ const mergeAndRemoveDuplicateFlights = (flightResults) => {
 
 const getFlights = async () => Promise.all(
   API_CONSTANTS.SOURCE_API.map(async (api) => {
-    const params = {
-      operation: httpUtil.sendHttpRequest(
-        api.API_URL,
-        API_CONSTANTS.METHODS.GET,
-        config.headers,
-      ),
-      timeout: config.timeout,
-      delay: config.delay,
-      retries: config.retries,
-    };
-    Logger.info(
-      `Start Processing Response with params ${JSON.stringify(params)}`,
-    );
-    return responseService.processResponse(params);
+    return responseService.processResponse(api.API_URL);
   }),
 );
 
@@ -63,4 +50,6 @@ const process = async () => {
 
 module.exports = {
   process,
+  getFlights,
+  mergeAndRemoveDuplicateFlights
 };
