@@ -43,6 +43,9 @@
     - [x] controller
     - [x] routers
         - [x] express app router
+- [x] tests
+    - [x] run the test with npm run test
+    - [x] since the comtravo api is unstable, i have mocked the functions in jest 
 - [x] Build pipeline (CI/CD) to deploy on heroku
 - [x] ResponseApi.yml 
 
